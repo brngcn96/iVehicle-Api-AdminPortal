@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a80a9b846e6a4385bfc0124cd6f167d2" Name="Diagram1" >
+        <EntityTypeShape EntityType="Model1.Admin" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Model1.ChildUser" Width="1.5" PointX="5.25" PointY="5.875" />
+        <EntityTypeShape EntityType="Model1.Report" Width="1.5" PointX="5.25" PointY="2.625" />
+        <EntityTypeShape EntityType="Model1.Ride" Width="1.5" PointX="0.75" PointY="3.375" />
+        <EntityTypeShape EntityType="Model1.Station" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="Model1.User" Width="1.5" PointX="3" PointY="2" />
+        <EntityTypeShape EntityType="Model1.Vehicle" Width="1.5" PointX="3" PointY="8.375" />
+        <AssociationConnector Association="Model1.FK_ChildUser_User" />
+        <AssociationConnector Association="Model1.FK_Report_User" />
+        <AssociationConnector Association="Model1.FK_Report_Vehicle" />
+        <AssociationConnector Association="Model1.FK_Table_ToTable" />
+        <AssociationConnector Association="Model1.FK_User_Ride" />
+        <AssociationConnector Association="Model1.FK_Vehicle_Station" />
+        <AssociationConnector Association="Model1.UsersPastRides" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

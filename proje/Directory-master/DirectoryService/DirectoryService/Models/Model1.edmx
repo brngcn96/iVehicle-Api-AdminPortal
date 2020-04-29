@@ -1,0 +1,653 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Admin_ID" />
+          </Key>
+          <Property Name="Admin_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PasswordHash" Type="varbinary(max)" Nullable="false" />
+          <Property Name="PasswordSalt" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Adress" Type="nvarchar(max)" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="CreatorIP" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatorRole" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UpdaterIP" Type="nvarchar(max)" />
+          <Property Name="UpdaterRole" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ChildUser">
+          <Key>
+            <PropertyRef Name="ChildUser_ID" />
+          </Key>
+          <Property Name="ChildUser_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Parent_ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PasswordHash" Type="varbinary(max)" Nullable="false" />
+          <Property Name="PasswordSalt" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Adress" Type="nvarchar(max)" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatorIP" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatorRole" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UpdaterIP" Type="nvarchar(max)" />
+          <Property Name="UpdaterRole" Type="nvarchar(max)" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="Report_ID" />
+          </Key>
+          <Property Name="Report_ID" Type="int" Nullable="false" />
+          <Property Name="Vehicle_ID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ride">
+          <Key>
+            <PropertyRef Name="Ride_ID" />
+          </Key>
+          <Property Name="Ride_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="float" />
+          <Property Name="DurationMinutes" Type="int" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="FinishTime" Type="datetime" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Station">
+          <Key>
+            <PropertyRef Name="Station_ID" />
+          </Key>
+          <Property Name="Station_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Location" Type="nvarchar(max)" />
+          <Property Name="VehicleNumber" Type="nvarchar(max)" />
+          <Property Name="Status                                                                                                                          " Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurrentRide_ID" Type="int" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PasswordHash" Type="varbinary(max)" Nullable="false" />
+          <Property Name="PasswordSalt" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Adress" Type="nvarchar(max)" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" />
+          <Property Name="Credit" Type="float" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatorIP" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatorRole" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UpdaterIP" Type="nvarchar(max)" />
+          <Property Name="UpdaterRole" Type="nvarchar(max)" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="GiftCounter" Type="int" Nullable="false" />
+          <Property Name="GiftedHour" Type="int" Nullable="false" />
+          <Property Name="TotalHours" Type="float" />
+        </EntityType>
+        <EntityType Name="UsersPastRides">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="Ride_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="Vehicle_ID" />
+          </Key>
+          <Property Name="Vehicle_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isReserved" Type="bit" Nullable="false" />
+          <Property Name="Station_ID" Type="int" Nullable="false" />
+          <Property Name="Position_in_Station" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ChildUser_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="ChildUser" Type="Self.ChildUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="ChildUser">
+              <PropertyRef Name="Parent_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_Vehicle">
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="Vehicle_ID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="Vehicle_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_ToTable">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Ride" Type="Self.Ride" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Ride">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Ride">
+          <End Role="Ride" Type="Self.Ride" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ride">
+              <PropertyRef Name="Ride_ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="CurrentRide_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersPastRides_ToRide">
+          <End Role="Ride" Type="Self.Ride" Multiplicity="1" />
+          <End Role="UsersPastRides" Type="Self.UsersPastRides" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ride">
+              <PropertyRef Name="Ride_ID" />
+            </Principal>
+            <Dependent Role="UsersPastRides">
+              <PropertyRef Name="Ride_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersPastRides_ToUser">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UsersPastRides" Type="Self.UsersPastRides" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="UsersPastRides">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicle_Station">
+          <End Role="Station" Type="Self.Station" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Station">
+              <PropertyRef Name="Station_ID" />
+            </Principal>
+            <Dependent Role="Vehicle">
+              <PropertyRef Name="Station_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChildUser" EntityType="Self.ChildUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ride" EntityType="Self.Ride" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Station" EntityType="Self.Station" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersPastRides" EntityType="Self.UsersPastRides" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehicle" EntityType="Self.Vehicle" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ChildUser_User" Association="Self.FK_ChildUser_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="ChildUser" EntitySet="ChildUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_User" Association="Self.FK_Report_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_Vehicle" Association="Self.FK_Report_Vehicle">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_ToTable" Association="Self.FK_Table_ToTable">
+            <End Role="User" EntitySet="User" />
+            <End Role="Ride" EntitySet="Ride" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Ride" Association="Self.FK_User_Ride">
+            <End Role="Ride" EntitySet="Ride" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersPastRides_ToRide" Association="Self.FK_UsersPastRides_ToRide">
+            <End Role="Ride" EntitySet="Ride" />
+            <End Role="UsersPastRides" EntitySet="UsersPastRides" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersPastRides_ToUser" Association="Self.FK_UsersPastRides_ToUser">
+            <End Role="User" EntitySet="User" />
+            <End Role="UsersPastRides" EntitySet="UsersPastRides" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicle_Station" Association="Self.FK_Vehicle_Station">
+            <End Role="Station" EntitySet="Station" />
+            <End Role="Vehicle" EntitySet="Vehicle" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="Model1.Admin" />
+          <EntitySet Name="ChildUser" EntityType="Model1.ChildUser" />
+          <EntitySet Name="Report" EntityType="Model1.Report" />
+          <EntitySet Name="Ride" EntityType="Model1.Ride" />
+          <EntitySet Name="Station" EntityType="Model1.Station" />
+          <EntitySet Name="User" EntityType="Model1.User" />
+          <EntitySet Name="Vehicle" EntityType="Model1.Vehicle" />
+          <AssociationSet Name="FK_ChildUser_User" Association="Model1.FK_ChildUser_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="ChildUser" EntitySet="ChildUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_User" Association="Model1.FK_Report_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_Vehicle" Association="Model1.FK_Report_Vehicle">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_ToTable" Association="Model1.FK_Table_ToTable">
+            <End Role="User" EntitySet="User" />
+            <End Role="Ride" EntitySet="Ride" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Ride" Association="Model1.FK_User_Ride">
+            <End Role="Ride" EntitySet="Ride" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicle_Station" Association="Model1.FK_Vehicle_Station">
+            <End Role="Station" EntitySet="Station" />
+            <End Role="Vehicle" EntitySet="Vehicle" />
+          </AssociationSet>
+          <AssociationSet Name="UsersPastRides" Association="Model1.UsersPastRides">
+            <End Role="Ride" EntitySet="Ride" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Admin_ID" />
+          </Key>
+          <Property Name="Admin_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="PasswordSalt" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatorIP" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatorRole" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdaterIP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdaterRole" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ChildUser">
+          <Key>
+            <PropertyRef Name="ChildUser_ID" />
+          </Key>
+          <Property Name="ChildUser_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Parent_ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="PasswordSalt" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatorIP" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatorRole" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdaterIP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdaterRole" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model1.FK_ChildUser_User" FromRole="ChildUser" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="Report_ID" />
+          </Key>
+          <Property Name="Report_ID" Type="Int32" Nullable="false" />
+          <Property Name="Vehicle_ID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Model1.FK_Report_User" FromRole="Report" ToRole="User" />
+          <NavigationProperty Name="Vehicle" Relationship="Model1.FK_Report_Vehicle" FromRole="Report" ToRole="Vehicle" />
+        </EntityType>
+        <EntityType Name="Ride">
+          <Key>
+            <PropertyRef Name="Ride_ID" />
+          </Key>
+          <Property Name="Ride_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="Cost" Type="Double" />
+          <Property Name="DurationMinutes" Type="Int32" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FinishTime" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model1.FK_Table_ToTable" FromRole="Ride" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Model1.FK_User_Ride" FromRole="Ride" ToRole="User" />
+          <NavigationProperty Name="User2" Relationship="Model1.UsersPastRides" FromRole="Ride" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Station">
+          <Key>
+            <PropertyRef Name="Station_ID" />
+          </Key>
+          <Property Name="Station_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VehicleNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status__________________________________________________________________________________________________________________________" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Vehicle" Relationship="Model1.FK_Vehicle_Station" FromRole="Station" ToRole="Vehicle" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrentRide_ID" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="PasswordSalt" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Credit" Type="Double" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatorIP" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatorRole" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdaterIP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdaterRole" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="GiftCounter" Type="Int32" Nullable="false" />
+          <Property Name="GiftedHour" Type="Int32" Nullable="false" />
+          <Property Name="TotalHours" Type="Double" />
+          <NavigationProperty Name="ChildUser" Relationship="Model1.FK_ChildUser_User" FromRole="User" ToRole="ChildUser" />
+          <NavigationProperty Name="Report" Relationship="Model1.FK_Report_User" FromRole="User" ToRole="Report" />
+          <NavigationProperty Name="Ride" Relationship="Model1.FK_Table_ToTable" FromRole="User" ToRole="Ride" />
+          <NavigationProperty Name="Ride1" Relationship="Model1.FK_User_Ride" FromRole="User" ToRole="Ride" />
+          <NavigationProperty Name="Ride2" Relationship="Model1.UsersPastRides" FromRole="User" ToRole="Ride" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="Vehicle_ID" />
+          </Key>
+          <Property Name="Vehicle_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isReserved" Type="Boolean" Nullable="false" />
+          <Property Name="Station_ID" Type="Int32" Nullable="false" />
+          <Property Name="Position_in_Station" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Report" Relationship="Model1.FK_Report_Vehicle" FromRole="Vehicle" ToRole="Report" />
+          <NavigationProperty Name="Station" Relationship="Model1.FK_Vehicle_Station" FromRole="Vehicle" ToRole="Station" />
+        </EntityType>
+        <Association Name="FK_ChildUser_User">
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.ChildUser" Role="ChildUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="ChildUser">
+              <PropertyRef Name="Parent_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_User">
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.Report" Role="Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_Vehicle">
+          <End Type="Model1.Vehicle" Role="Vehicle" Multiplicity="1" />
+          <End Type="Model1.Report" Role="Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="Vehicle_ID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="Vehicle_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_ToTable">
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.Ride" Role="Ride" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Ride">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Ride">
+          <End Type="Model1.Ride" Role="Ride" Multiplicity="0..1" />
+          <End Type="Model1.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ride">
+              <PropertyRef Name="Ride_ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="CurrentRide_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicle_Station">
+          <End Type="Model1.Station" Role="Station" Multiplicity="1" />
+          <End Type="Model1.Vehicle" Role="Vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Station">
+              <PropertyRef Name="Station_ID" />
+            </Principal>
+            <Dependent Role="Vehicle">
+              <PropertyRef Name="Station_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsersPastRides">
+          <End Type="Model1.Ride" Role="Ride" Multiplicity="0..1" />
+          <End Type="Model1.User" Role="User" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="StoreContainer" CdmEntityContainer="Model1Container" >
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="Model1.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="UpdaterRole" ColumnName="UpdaterRole" />
+                <ScalarProperty Name="UpdaterIP" ColumnName="UpdaterIP" />
+                <ScalarProperty Name="CreatorRole" ColumnName="CreatorRole" />
+                <ScalarProperty Name="CreatorIP" ColumnName="CreatorIP" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Admin_ID" ColumnName="Admin_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChildUser">
+            <EntityTypeMapping TypeName="Model1.ChildUser">
+              <MappingFragment StoreEntitySet="ChildUser">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UpdaterRole" ColumnName="UpdaterRole" />
+                <ScalarProperty Name="UpdaterIP" ColumnName="UpdaterIP" />
+                <ScalarProperty Name="CreatorRole" ColumnName="CreatorRole" />
+                <ScalarProperty Name="CreatorIP" ColumnName="CreatorIP" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Parent_ID" ColumnName="Parent_ID" />
+                <ScalarProperty Name="ChildUser_ID" ColumnName="ChildUser_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Report">
+            <EntityTypeMapping TypeName="Model1.Report">
+              <MappingFragment StoreEntitySet="Report">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Vehicle_ID" ColumnName="Vehicle_ID" />
+                <ScalarProperty Name="Report_ID" ColumnName="Report_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ride">
+            <EntityTypeMapping TypeName="Model1.Ride">
+              <MappingFragment StoreEntitySet="Ride">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="FinishTime" ColumnName="FinishTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="DurationMinutes" ColumnName="DurationMinutes" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Ride_ID" ColumnName="Ride_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Station">
+            <EntityTypeMapping TypeName="Model1.Station">
+              <MappingFragment StoreEntitySet="Station">
+                <ScalarProperty Name="Status__________________________________________________________________________________________________________________________" ColumnName="Status                                                                                                                          " />
+                <ScalarProperty Name="VehicleNumber" ColumnName="VehicleNumber" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Station_ID" ColumnName="Station_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="Model1.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="TotalHours" ColumnName="TotalHours" />
+                <ScalarProperty Name="GiftedHour" ColumnName="GiftedHour" />
+                <ScalarProperty Name="GiftCounter" ColumnName="GiftCounter" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UpdaterRole" ColumnName="UpdaterRole" />
+                <ScalarProperty Name="UpdaterIP" ColumnName="UpdaterIP" />
+                <ScalarProperty Name="CreatorRole" ColumnName="CreatorRole" />
+                <ScalarProperty Name="CreatorIP" ColumnName="CreatorIP" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Credit" ColumnName="Credit" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CurrentRide_ID" ColumnName="CurrentRide_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicle">
+            <EntityTypeMapping TypeName="Model1.Vehicle">
+              <MappingFragment StoreEntitySet="Vehicle">
+                <ScalarProperty Name="Position_in_Station" ColumnName="Position_in_Station" />
+                <ScalarProperty Name="Station_ID" ColumnName="Station_ID" />
+                <ScalarProperty Name="isReserved" ColumnName="isReserved" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Vehicle_ID" ColumnName="Vehicle_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UsersPastRides" TypeName="Model1.UsersPastRides" StoreEntitySet="UsersPastRides">
+            <EndProperty Name="User">
+              <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+            </EndProperty>
+            <EndProperty Name="Ride">
+              <ScalarProperty Name="Ride_ID" ColumnName="Ride_ID" />
+            </EndProperty>
+            <Condition ColumnName="Ride_ID" IsNull="false" />
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
